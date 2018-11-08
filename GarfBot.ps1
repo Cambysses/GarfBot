@@ -11,17 +11,8 @@
 
 function Garf-Date
 {
-    # Sloppy code to get a date in "Garf Format(tm)". There's probably a better way to do this.
-    [datetime]$Beginning = "06/01/1978"
-    [datetime]$End = [datetime]::Now
-    $RandomSeed = Get-Random -Minimum $Beginning.Ticks -Maximum $End.Ticks
-    $GarfDate = Get-Date $RandomSeed
-    $GarfYear = $GarfDate.Year
-    $GarfMonth = $GarfDate.Month
-    if ($GarfMonth.ToString().Length -eq 1){$GarfMonth = "0" + $GarfMonth}
-    $GarfDay = $GarfDate.Day
-    if ($GarfDay.ToString().Length -eq 1){$GarfDay = "0" + $GarfDay}
-    return "$GarfYear/$GarfYear-$GarfMonth-$GarfDay"  
+    # Returns date in "Garf Format(tm)".
+    return (Get-Date).AddDays( -(New-TimeSpan '6/1/1978').Days * (Get-Random -Maximum 1.0) ).ToString( 'yyyy/yyyy-MM-dd' )
 }
 
 function Main

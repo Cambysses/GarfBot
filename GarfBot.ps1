@@ -18,26 +18,25 @@ function Garf-Date
 function Main
 {
     # Black magic.
+    $GarfPath = "$ENV:Temp\garf.gif"
     $GarfURL = "https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/" + (Garf-Date) + ".gif"
-    $GarfImage = Invoke-WebRequest -Uri $GarfURL -OutFile "$env:HOMEDRIVE\garf.gif"
+    Invoke-WebRequest -Uri $GarfURL -OutFile $GarfPath
 
-    # Generate form with Garf pic.
-    [void][reflection.assembly]::LoadWithPartialName("System.Windows.Forms")
-    $FilePath = (Get-Item "$env:HOMEDRIVE\garf.gif")
-    $Image = [System.Drawing.Image]::Fromfile($FilePath);
-    [System.Windows.Forms.Application]::EnableVisualStyles();
-    $Form = New-Object Windows.Forms.Form
-    $Form.Text = "Image Viewer"
-    $Form.Width = $Image.Size.Width + 15;
-    $Form.Height =  $Image.Size.Height + 40;
-    $PictureBox = New-Object Windows.Forms.PictureBox
-    $PictureBox.Width =  $Image.Size.Width;
-    $PictureBox.Height =  $Image.Size.Height;
-    $PictureBox.Image = $Image;
-    $Form.controls.add($PictureBox)
-    $Form.Add_Shown( { $Form.Activate() } )
-    $Form.ShowDialog()
-    #$Form.Show()
+    # Generate form and display image.
+    $GarfImage = [System.Drawing.Image]::Fromfile($GarfPath)
+    ($GarfForm = [Windows.Forms.Form]@{
+            Text   = "Image Viewer"
+            Width  =  $GarfImage.Size.Width + 15
+            Height =  $GarfImage.Size.Height + 40}
+
+        ).Controls.Add(
+
+            [Windows.Forms.PictureBox]@{
+                Image = $GarfImage
+                Size  = $GarfImage.Size})
+
+    $GarfForm.ShowDialog()
+    $GarfForm.Dispose()
 }
 
 Main

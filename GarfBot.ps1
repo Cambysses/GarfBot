@@ -36,7 +36,7 @@ function Main
                 Size  = $GarfImage.Size})
 
     $GarfForm.ShowDialog()
-    $GarfForm.Dispose()
+    $GarfImage.Dispose()
 }
 
 Main

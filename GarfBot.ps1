@@ -15,7 +15,7 @@ function Garf-Date
     return (Get-Date).AddDays( -(New-TimeSpan '6/1/1978').Days * (Get-Random -Maximum 1.0) ).ToString( 'yyyy/yyyy-MM-dd' )
 }
 
-function Main
+function Garf-Main
 {
     # Black magic.
     $GarfPath = "$ENV:Temp\garf.gif"
@@ -25,7 +25,7 @@ function Main
     # Generate form and display image.
     $GarfImage = [System.Drawing.Image]::Fromfile($GarfPath)
     ($GarfForm = [Windows.Forms.Form]@{
-            Text   = "GARFBOT!!!!!!!!"
+            Text   = "GARFBOT!!!!!!!! $((Garf-Date).SubString(5))"
             Width  =  $GarfImage.Size.Width + 15
             Height =  $GarfImage.Size.Height + 40}
 
@@ -39,4 +39,4 @@ function Main
     $GarfImage.Dispose()
 }
 
-Main
+Garf-Main

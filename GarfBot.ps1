@@ -12,7 +12,7 @@
 function Garf-Date
 {
     # Returns date in "Garf Format(tm)".
-    return (Get-Date).AddDays( -(New-TimeSpan '6/1/1978').Days * (Get-Random -Maximum 1.0) ).ToString( 'yyyy/yyyy-MM-dd' )
+    return (Get-Date).AddDays(-(New-TimeSpan '6/1/1978').Days * (Get-Random -Maximum 1.0)).ToString('yyyy/yyyy-MM-dd')
 }
 
 function Garf-Main

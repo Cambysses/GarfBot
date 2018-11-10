@@ -18,14 +18,15 @@ function Garf-Date
 function Garf-Main
 {
     # Black magic.
+    $GarfDate = Garf-Date
     $GarfPath = "$ENV:Temp\garf.gif"
-    $GarfURL = "https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/$(Garf-Date).gif"
+    $GarfURL = "https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/$GarfDate.gif"
     Invoke-WebRequest -Uri $GarfURL -OutFile $GarfPath
 
     # Generate form and display image.
     $GarfImage = [System.Drawing.Image]::Fromfile($GarfPath)
     ($GarfForm = [Windows.Forms.Form]@{
-            Text   = "GARFBOT!!!!!!!! $((Garf-Date).SubString(5))"
+            Text   = "GARFBOT!!!!!!!! $(($GarfDate).SubString(5))"
             Width  =  $GarfImage.Size.Width + 15
             Height =  $GarfImage.Size.Height + 40}
 

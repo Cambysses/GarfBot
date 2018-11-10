@@ -19,7 +19,7 @@ function Garf-Main
 {
     # Black magic.
     $GarfPath = "$ENV:Temp\garf.gif"
-    $GarfURL = "https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/" + (Garf-Date) + ".gif"
+    $GarfURL = "https://d1ejxu6vysztl5.cloudfront.net/comics/garfield/$(Garf-Date).gif"
     Invoke-WebRequest -Uri $GarfURL -OutFile $GarfPath
 
     # Generate form and display image.

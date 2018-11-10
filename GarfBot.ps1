@@ -25,7 +25,7 @@ function Main
     # Generate form and display image.
     $GarfImage = [System.Drawing.Image]::Fromfile($GarfPath)
     ($GarfForm = [Windows.Forms.Form]@{
-            Text   = "Image Viewer"
+            Text   = "GARFBOT!!!!!!!!"
             Width  =  $GarfImage.Size.Width + 15
             Height =  $GarfImage.Size.Height + 40}
 

@@ -7,8 +7,6 @@
 # Gets a random garfield comic and displays it in a separate window.
 # There seems to be a garf comic for every day since 1978 so it should always work.
 
-# This program must be run as admin.
-
 function Garf-Date
 {
     # Returns date in "Garf Format(tm)".
